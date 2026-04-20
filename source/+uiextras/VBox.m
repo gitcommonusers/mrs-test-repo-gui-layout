@@ -1,13 +1,16 @@
-  classdef VBox < matlab.ui.container.GridLayout                                                                                                                            
-      % VBox  A vertical box layout (simplified mock)
+classdef VBox < handle                                                                                                                                                    
+      % VBox  A vertical box layout (simplified mock)       
       properties                                                                                                                                                            
+          Parent                                                                                                                                                            
           Spacing (1,1) double = 5                                                                                                                                          
+          Children = {}                                                                                                                                                     
       end                                                                                                                                                                   
       methods                                                                                                                                                               
-          function obj = VBox(varargin)                     
-              obj@matlab.ui.container.GridLayout(varargin{:});
-              obj.ColumnWidth = {'1x'};                       
-              obj.RowHeight = {'1x', '1x'};
+          function obj = VBox(varargin)                                                                                                                                     
+              p = inputParser;                                                                                                                                              
+              addParameter(p, 'Parent', []);                                                                                                                                
+              parse(p, varargin{:});                                                                                                                                        
+              obj.Parent = p.Results.Parent;                                                                                                                                
           end                                                                                                                                                               
       end                                                                                                                                                                   
-  end 
+  end     
